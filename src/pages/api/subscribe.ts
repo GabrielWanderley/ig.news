@@ -37,7 +37,7 @@ if(req.method === "POST"){
 
  let customerId = user.data.stripe_customer_id
 
- if(customerId!){
+ if(!customerId){
    const stripeCustomer = await stripe.customers.create({
       email: session.user.email,
       //metadata
