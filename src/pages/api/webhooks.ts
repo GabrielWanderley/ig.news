@@ -66,6 +66,7 @@ if (req.method === "POST"){
             await saveSubscription(
                 checkoutSession.subscription.toString(),
                 checkoutSession.customer.toString(),
+                true
             )
 
                 break;
@@ -73,7 +74,8 @@ if (req.method === "POST"){
                 throw new Error('unhandled event.')
         }
     } catch(err){
-        return res.json({error: 'Webhook handler failed.'})
+        console.log(err) 
+        return res.status(400).json({ error: 'Webhook handler failed' }) 
     }
    }
 
