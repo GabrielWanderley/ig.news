@@ -3,11 +3,22 @@ import { GetStaticProps } from 'next/types'
 
 import Prismic from '@prismicio/client'
 import { getPrismicClient } from '../../services/prismic'
+import { RichText } from 'prismic-dom'
 
 import styles from './styles.module.scss'
 
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  updatedAt: string;
+}
 
-export default function Posts(){
+interface PostsProps{
+    posts: Post[]
+}
+
+export default function Posts({posts} : PostsProps){
  return(
     <>
        <Head>
@@ -16,21 +27,13 @@ export default function Posts(){
 
         <main className={styles.container}>
             <div className={styles.posts}>
-                <a>
-                    <time>01/09/2001</time>
-                    <strong>como eu consigo amar e odiar um time </strong>
-                    <p>its a chelsea thing é  isso que esse clube é pra mim incrivel e amedrontador eu amo ele incondicionalmente </p>
-                </a>
-                <a>
-                    <time>01/09/2001</time>
-                    <strong>como eu consigo amar e odiar um time </strong>
-                    <p>its a chelsea thing é  isso que esse clube é pra mim incrivel e amedrontador eu amo ele incondicionalmente </p>
-                </a>
-                <a>
-                    <time>01/09/2001</time>
-                    <strong>como eu consigo amar e odiar um time </strong>
-                    <p>its a chelsea thing é  isso que esse clube é pra mim incrivel e amedrontador eu amo ele incondicionalmente </p>
-                </a>
+                {posts.map(post =>(
+               <a key={post.slug}>
+                    <time>{post.updatedAt}</time>
+                    <strong>{post.title}</strong>
+                    <p>{post.excerpt}</p>
+                </a>  
+                ))}
             </div>
         </main>
 
@@ -48,10 +51,23 @@ export const getStaticProps : GetStaticProps = async ()=>{
         fetch:['publication.title', 'publication.content'],
         pageSize:100,
     })
+    
+    console.log(JSON.stringify(response, null, 2))
 
-    console.log(response)
+    const posts = response.results.map(post =>{
+        return{
+            slug: post.uid,
+            title: RichText.asText(post.data.title),
+            excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
+            updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-br',{
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            })
+        }
+    })
 
-    return(
-        props:{}
-    )
+    return{
+        props:{ posts }
+    }
 }
