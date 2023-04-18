@@ -15,10 +15,10 @@ return(
                 <img src="/images/logo.svg" alt=""/>
                 <nav>
                     <ActiveLink activeClassName={styles.active} href='/'>
-                      <p>Home</p>
+                    <p>  Home </p>
                     </ActiveLink>
                     <ActiveLink href='/posts'activeClassName={styles.active}>
-                    <p>Posts</p>
+                    <p> Posts </p>
                     </ActiveLink>
                 </nav>
                 
