@@ -55,9 +55,8 @@ export const getStaticProps : GetStaticProps = async ()=>{
         pageSize:100,
     })
     
-    //log(JSON.stringify(response, null, 2))
-
-    const posts = response.results.map(post =>{
+    //console.log(JSON.stringify(response, null, 2))
+    const posts = response.results.map((post) =>{
         return{
             slug: post.uid,
             title: RichText.asText(post.data.title),

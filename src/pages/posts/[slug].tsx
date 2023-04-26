@@ -18,6 +18,8 @@ interface PostsProps{
 }
 
 
+
+
 export default function Post({post}: PostsProps){
     return(
     <>   
@@ -39,6 +41,7 @@ export default function Post({post}: PostsProps){
 
 export const getServerSideProps: GetServerSideProps = async ({req, params}) =>{
  
+
     const session = await getSession({req})
 
     const {slug} = params; 
@@ -61,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async ({req, params}) =>{
     }
     return{
         props:{
-            post,
+            post ,
         }
     }
 }
