@@ -4,7 +4,6 @@ import GithubProvider from "next-auth/providers/github"
 
 import { fauna } from "../../../services/fauna"
 import { query as q} from "faunadb"
-import { Session } from "inspector"
 
 
 export const authOptions = {
@@ -22,14 +21,14 @@ export const authOptions = {
   ],
   callbacks: {
 
-    async Session({session}){
+    async session({session}){
      
       try{
         const userActiveSubscription = await fauna.query<string>(
           q.Get(
            q.Intersection([
             q.Match(
-              q.Index('subscripition_by_user_ref'),
+              q.Index('subscription_by_user_ref'),
               q.Select(
                 "ref",
                 q.Get(
@@ -56,7 +55,7 @@ export const authOptions = {
         console.log(err)
         return{
 
-          ...Session,
+          ...session,
           activeSubscription : null,
         }
       }

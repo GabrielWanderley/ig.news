@@ -14,7 +14,7 @@ export function SubscribeButton({priceId}: subscribeButtonProps){
     const router = useRouter()
 
     async function sla (){
-     console.log(session)
+     console.log(session.activeSubscription)
     } 
     
     
