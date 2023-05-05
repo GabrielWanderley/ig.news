@@ -38,12 +38,11 @@ export default function Post({post}: PostsProps){
     </>
     )
 }
-
-export const getServerSideProps: GetServerSideProps = async ({req, params}) =>{
  
-
+export const getServerSideProps: GetServerSideProps = async ({req, params}) =>{
+  
     const session = await getSession({req})
-
+    
     const {slug} = params; 
 
     if (!session.activeSubscription){
@@ -54,9 +53,7 @@ export const getServerSideProps: GetServerSideProps = async ({req, params}) =>{
             }
         }
     }
-
-    console.log(session)
-
+    
     const prismic = getPrismicClient(req)
 
     const response = await prismic.getByUID<any>('publication', String(slug), {})

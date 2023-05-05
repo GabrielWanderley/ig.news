@@ -52,10 +52,12 @@ export const authOptions = {
           ...session,
           activeSubscription : userActiveSubscription
         }
-      } catch {
+      } catch(err) {
+        console.log(err)
         return{
+
           ...Session,
-          activeSubsciption : null,
+          activeSubscription : null,
         }
       }
     },
@@ -88,8 +90,9 @@ export const authOptions = {
       )
     )
       return true
-        }catch{
-      return false
+        }catch(err){
+          console.log(err)
+         return false
     }
   },
 }
