@@ -13,12 +13,6 @@ export function SubscribeButton({priceId}: subscribeButtonProps){
     const {data: session} = useSession()
     const router = useRouter()
 
-    async function sla (){
-     console.log(session.activeSubscription)
-    } 
-    
-    
-
    async function handleSubscribe(){
         if(!session){
             signIn('github')
@@ -51,9 +45,6 @@ export function SubscribeButton({priceId}: subscribeButtonProps){
         onClick={handleSubscribe}
         >
          Subscribe Now
-        </button>
-        <button onClick={sla}>
-         aaa
         </button>
        </> 
     )
