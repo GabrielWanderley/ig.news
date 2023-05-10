@@ -1,6 +1,6 @@
 # ig.news
 O projeto ig.news é um blog onde os usuários podem ter acesso ao conteúdo de cada postagem de acordo com o status de sua assinatura.
-#tecnologias 
+# tecnologias 
 * ReactJS
 * NextJS
 * TypeScript
@@ -11,12 +11,14 @@ O projeto ig.news é um blog onde os usuários podem ter acesso ao conteúdo de 
 * Prismic
 
 * FaunaDB
-O Fauna é o nosso banco de dados onde está salvo todos os usuarios, e atraves deles vemos se o usuario tem uma assinatura ou não, essa é a visão para usuarios
-que tentam acessar o post sem assinatura
-![sem](https://github.com/GabrielWanderley/ig.news/assets/101371288/c9a4ac93-63ec-4783-b9ff-9ebea1edb438)
+
+O Fauna é o nosso banco de dados onde está salvo todos os usuarios, e atraves deles vemos se o usuario tem uma assinatura ou não, essa é a visão para usuarios que tentam acessar o post sem assinatura
+<img src=(https://github.com/GabrielWanderley/ig.news/assets/101371288/c9a4ac93-63ec-4783-b9ff-9ebea1edb438) width="150px"/>
+
 
 
 * stripe 
+ 
  É nossa forma de pagamento 
   ![stripe](https://github.com/GabrielWanderley/ig.news/assets/101371288/594b053b-d1ad-4b47-94e9-fb334c562fdb)
 
